@@ -1,4 +1,4 @@
-package com.javanauta.bffagendador.business.dto;
+package com.javanauta.bffagendador.business.dto.out;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.javanauta.bffagendador.business.enums.StatusNotificacaoEnum;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TarefasDTO {
+public class TarefasDTOResponse {
     private String id;
     private String nomeTarefa;
     private String descricao;
