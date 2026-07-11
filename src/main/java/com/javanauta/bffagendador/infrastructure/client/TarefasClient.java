@@ -3,11 +3,12 @@ package com.javanauta.bffagendador.infrastructure.client;
 import com.javanauta.bffagendador.business.dto.in.TarefasDTORequest;
 import com.javanauta.bffagendador.business.dto.out.TarefasDTOResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.format.annotation.DateTimeFormat; // Adicionado import
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@FeignClient(name = "tarefas", url = "${agendador-tarefas.url}") // Ajuste o name/url se no seu original for diferente
+@FeignClient(name = "tarefas", url = "${agendador-tarefas.url}")
 public interface TarefasClient {
 
     @PostMapping
@@ -16,8 +17,8 @@ public interface TarefasClient {
 
     @GetMapping("/eventos")
     List<TarefasDTOResponse> buscaListaDeTarefasPorPeriodo(
-            @RequestParam("dataInicial") LocalDateTime dataInicial,
-            @RequestParam("dataFinal") LocalDateTime dataFinal,
+            @RequestParam("dataInicial") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataInicial, // Adicionado aqui
+            @RequestParam("dataFinal") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataFinal,   // Adicionado aqui
             @RequestHeader("Authorization") String token);
 
     @GetMapping
